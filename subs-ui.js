@@ -286,7 +286,9 @@ function removeWatchedAndAddButton() {
     // if we hid any videos, see if sections need changing, or videos loading
     if (hiddenCount > 0) {
         processSections();
-        loadMoreVideos();
+		if (settings["settings.hide.watched.loadmore"]) {
+			loadMoreVideos();
+		}
     }
 }
 

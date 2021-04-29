@@ -62,7 +62,9 @@ function collapseSectionChanged(event) {
             contentDiv.style.display = '';
         } else {
             contentDiv.style.display = 'none';
-            loadMoreVideos();
+			if (settings["settings.hide.watched.loadmore"]) {
+				loadMoreVideos();
+			}
         }
     } catch (e) {
         logError(e);
@@ -76,7 +78,9 @@ function markAllAsWatched() {
         markWatched(item, getVideoId(item));
     }
 
-    loadMoreVideos();
+	if (settings["settings.hide.watched.loadmore"]) {
+		loadMoreVideos();
+	}
 }
 
 function loadMoreVideos() {
@@ -139,6 +143,10 @@ function initSubs() {
             }
         }, settings["settings.hide.watched.refresh.rate"]);
 
+		if (settings["settings.hide.watched.loadmore"]) {		
+			window.clearInterval(intervalId);
+		}
+		
         removeWatchedAndAddButton();
 
     });
